@@ -23,6 +23,8 @@ namespace GubaidullinAutoService
         public ServicePage()
         {
             InitializeComponent();
+            var currentServices = Gubaidullin_AutoServiceEntities2.GetContext().Service.ToList();
+            ServiceListView.ItemsSource = currentServices;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

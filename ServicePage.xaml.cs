@@ -4,9 +4,6 @@ using System.Windows.Controls;
 
 namespace GubaidullinAutoService
 {
-    /// <summary>
-    ///     Interaction logic for ServicePage.xaml
-    /// </summary>
     public partial class ServicePage : Page
     {
         public ServicePage()
@@ -48,5 +45,22 @@ namespace GubaidullinAutoService
         private void RButtonUp_OnChecked(object sender, RoutedEventArgs e) => UpdateServices();
 
         private void RButtonDown_OnChecked(object sender, RoutedEventArgs e) => UpdateServices();
+
+        private void AddButton_OnClick(object sender, RoutedEventArgs e) => 
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+
+        private void EditButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button)?.DataContext as Service));
+        }
+
+        private void ServicePage_OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Gubaidullin_AutoServiceEntities2.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                ServiceListView.ItemsSource = Gubaidullin_AutoServiceEntities2.GetContext().Service.ToList();
+            }
+        }
     }
 }

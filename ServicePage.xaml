@@ -12,7 +12,21 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Name="TBCount" FontSize="20" Height="20"></TextBlock>
+            <TextBlock Name="TBAllRecords" FontSize="20" Height="20"></TextBlock>
+            <Button Name="LeftDirButton" Click="LeftDirButton_Click" Content="&lt;" Width="20" Height="20"></Button>
+            <ListBox MouseUp="PageListBox_MouseUp" FontSize="20" Name="PageListBox">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Button Name="RightDirButton" Content="&gt;" Width="20" Height="20" Click="RightDirButton_Click"></Button>
+        </StackPanel>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Text="Введите название для поиска " TextAlignment="Right" Width="300" FontSize="20" />
@@ -53,11 +67,11 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center">
+                        <Image Grid.RowSpan="4" Width="200" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center">
                             <Image.Source>
                                 <Binding Path="MainImagePath">
                                     <Binding.TargetNullValue>
-                                        <ImageSource>Resources/service_logo.png</ImageSource>
+                                        <ImageSource>Resources/picture.png</ImageSource>
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
@@ -72,7 +86,7 @@
                                    Margin="5" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16" />
                         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                             <Button Name="EditButton" Click="EditButton_OnClick" Content="Редактировать" Margin="2" />
-                            <Button Name="DeleteButton" Content="Удалить" Margin="2" />
+                            <Button Name="DeleteButton" Click="DeleteButton_OnClick" Content="Удалить" Margin="2" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

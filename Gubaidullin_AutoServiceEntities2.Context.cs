@@ -9,20 +9,13 @@
 
 namespace GubaidullinAutoService
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class Gubaidullin_AutoServiceEntities2 : DbContext
     {
         private static Gubaidullin_AutoServiceEntities2 _context;
-        public static Gubaidullin_AutoServiceEntities2 GetContext()
-        {
-            if (_context == null)
-            {
-                _context = new Gubaidullin_AutoServiceEntities2();
-            }
-            return _context;
-        }
         public Gubaidullin_AutoServiceEntities2()
             : base("name=Gubaidullin_AutoServiceEntities2")
         {
@@ -32,7 +25,16 @@ namespace GubaidullinAutoService
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
+        public static Gubaidullin_AutoServiceEntities2 GetContext()
+        {
+           if (_context == null)
+           {
+                _context = new Gubaidullin_AutoServiceEntities2();
+           }
+           return _context;
+        }
+
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<ClientService> ClientService { get; set; }
         public virtual DbSet<DocumentByService> DocumentByService { get; set; }
@@ -43,7 +45,6 @@ namespace GubaidullinAutoService
         public virtual DbSet<ProductSale> ProductSale { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<ServicePhoto> ServicePhoto { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
     }
 }

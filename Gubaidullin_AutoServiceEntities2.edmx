@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Gubaidullin_AutoServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Gubaidullin_AutoServiceModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AttachedProduct">
           <Key>
             <PropertyRef Name="MainProductID" />
@@ -96,10 +96,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MainImagePath" Type="nvarchar" MaxLength="1000" />
-          <Property Name="DurationInSeconds" Type="nvarchar" MaxLength="8" Nullable="false" />
-          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Discount" Type="float" />
+          <Property Name="MainImagePath" Type="nvarchar" MaxLength="100" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="smallint" Nullable="false" />
+          <Property Name="Discount" Type="tinyint" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ServicePhoto">
@@ -109,16 +109,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceID" Type="int" Nullable="false" />
           <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -184,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientService_service_a_import">
+        <Association Name="FK_ClientService_Service">
           <End Role="Service" Type="Self.Service" Multiplicity="1" />
           <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
           <ReferentialConstraint>
@@ -256,7 +246,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ServicePhoto_service_a_import">
+        <Association Name="FK_ServicePhoto_Service">
           <End Role="Service" Type="Self.Service" Multiplicity="1" />
           <End Role="ServicePhoto" Type="Self.ServicePhoto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -292,7 +282,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Gubaidullin_AutoServiceModelStoreContainer">
+        <EntityContainer Name="Gubaidullin_AutoServiceModel2StoreContainer">
           <EntitySet Name="AttachedProduct" EntityType="Self.AttachedProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientService" EntityType="Self.ClientService" Schema="dbo" store:Type="Tables" />
@@ -304,7 +294,6 @@
           <EntitySet Name="ProductSale" EntityType="Self.ProductSale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServicePhoto" EntityType="Self.ServicePhoto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TagOfClient" EntityType="Self.TagOfClient" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AttachedProduct_Product" Association="Self.FK_AttachedProduct_Product">
@@ -323,7 +312,7 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="ClientService" EntitySet="ClientService" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientService_service_a_import" Association="Self.FK_ClientService_service_a_import">
+          <AssociationSet Name="FK_ClientService_Service" Association="Self.FK_ClientService_Service">
             <End Role="Service" EntitySet="Service" />
             <End Role="ClientService" EntitySet="ClientService" />
           </AssociationSet>
@@ -347,7 +336,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
-          <AssociationSet Name="FK_ServicePhoto_service_a_import" Association="Self.FK_ServicePhoto_service_a_import">
+          <AssociationSet Name="FK_ServicePhoto_Service" Association="Self.FK_ServicePhoto_Service">
             <End Role="Service" EntitySet="Service" />
             <End Role="ServicePhoto" EntitySet="ServicePhoto" />
           </AssociationSet>
@@ -364,7 +353,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Gubaidullin_AutoServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Gubaidullin_AutoServiceModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -392,7 +381,7 @@
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Self.FK_ClientService_client_a_import11" FromRole="ClientService" ToRole="Client" />
-          <NavigationProperty Name="Service" Relationship="Self.FK_ClientService_service_a_import" FromRole="ClientService" ToRole="Service" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_ClientService_Service" FromRole="ClientService" ToRole="Service" />
           <NavigationProperty Name="DocumentByService" Relationship="Self.FK_DocumentByService_ClientService" FromRole="ClientService" ToRole="DocumentByService" />
           <NavigationProperty Name="ProductSale" Relationship="Self.FK_ProductSale_ClientService" FromRole="ClientService" ToRole="ProductSale" />
         </EntityType>
@@ -466,13 +455,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="DurationInSeconds" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Discount" Type="Double" />
+          <Property Name="MainImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Int16" Nullable="false" />
+          <Property Name="Discount" Type="Byte" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_service_a_import" FromRole="Service" ToRole="ClientService" />
-          <NavigationProperty Name="ServicePhoto" Relationship="Self.FK_ServicePhoto_service_a_import" FromRole="Service" ToRole="ServicePhoto" />
+          <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
+          <NavigationProperty Name="ServicePhoto" Relationship="Self.FK_ServicePhoto_Service" FromRole="Service" ToRole="ServicePhoto" />
         </EntityType>
         <EntityType Name="ServicePhoto">
           <Key>
@@ -481,17 +470,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceID" Type="Int32" Nullable="false" />
           <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Service" Relationship="Self.FK_ServicePhoto_service_a_import" FromRole="ServicePhoto" ToRole="Service" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_ServicePhoto_Service" FromRole="ServicePhoto" ToRole="Service" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -526,7 +505,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientService_service_a_import">
+        <Association Name="FK_ClientService_Service">
           <End Role="Service" Type="Self.Service" Multiplicity="1" />
           <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
           <ReferentialConstraint>
@@ -598,7 +577,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ServicePhoto_service_a_import">
+        <Association Name="FK_ServicePhoto_Service">
           <End Role="Service" Type="Self.Service" Multiplicity="1" />
           <End Role="ServicePhoto" Type="Self.ServicePhoto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -629,7 +608,6 @@
           <EntitySet Name="ProductSale" EntityType="Self.ProductSale" />
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="ServicePhoto" EntityType="Self.ServicePhoto" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
           <AssociationSet Name="FK_client_a_import11_Gender" Association="Self.FK_client_a_import11_Gender">
             <End Role="Gender" EntitySet="Gender" />
@@ -639,7 +617,7 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="ClientService" EntitySet="ClientService" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientService_service_a_import" Association="Self.FK_ClientService_service_a_import">
+          <AssociationSet Name="FK_ClientService_Service" Association="Self.FK_ClientService_Service">
             <End Role="Service" EntitySet="Service" />
             <End Role="ClientService" EntitySet="ClientService" />
           </AssociationSet>
@@ -663,7 +641,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
-          <AssociationSet Name="FK_ServicePhoto_service_a_import" Association="Self.FK_ServicePhoto_service_a_import">
+          <AssociationSet Name="FK_ServicePhoto_Service" Association="Self.FK_ServicePhoto_Service">
             <End Role="Service" EntitySet="Service" />
             <End Role="ServicePhoto" EntitySet="ServicePhoto" />
           </AssociationSet>
@@ -681,9 +659,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Gubaidullin_AutoServiceModelStoreContainer" CdmEntityContainer="Gubaidullin_AutoServiceEntities2">
+        <EntityContainerMapping StorageEntityContainer="Gubaidullin_AutoServiceModel2StoreContainer" CdmEntityContainer="Gubaidullin_AutoServiceEntities2">
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.Client">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -698,7 +676,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClientService">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.ClientService">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.ClientService">
               <MappingFragment StoreEntitySet="ClientService">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
@@ -709,7 +687,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DocumentByService">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.DocumentByService">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.DocumentByService">
               <MappingFragment StoreEntitySet="DocumentByService">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ClientServiceID" ColumnName="ClientServiceID" />
@@ -718,7 +696,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.Gender">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -726,7 +704,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manufacturer">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.Manufacturer">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.Manufacturer">
               <MappingFragment StoreEntitySet="Manufacturer">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -735,7 +713,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.Product">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -748,7 +726,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductPhoto">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.ProductPhoto">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.ProductPhoto">
               <MappingFragment StoreEntitySet="ProductPhoto">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -757,7 +735,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductSale">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.ProductSale">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.ProductSale">
               <MappingFragment StoreEntitySet="ProductSale">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
@@ -768,12 +746,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Service">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.Service">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.Service">
               <MappingFragment StoreEntitySet="Service">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="MainImagePath" ColumnName="MainImagePath" />
-                <ScalarProperty Name="DurationInSeconds" ColumnName="DurationInSeconds" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -781,7 +759,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServicePhoto">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.ServicePhoto">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.ServicePhoto">
               <MappingFragment StoreEntitySet="ServicePhoto">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
@@ -789,19 +767,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tag">
-            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel.Tag">
+            <EntityTypeMapping TypeName="Gubaidullin_AutoServiceModel2.Tag">
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -809,7 +776,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AttachedProduct" TypeName="Gubaidullin_AutoServiceModel.AttachedProduct" StoreEntitySet="AttachedProduct">
+          <AssociationSetMapping Name="AttachedProduct" TypeName="Gubaidullin_AutoServiceModel2.AttachedProduct" StoreEntitySet="AttachedProduct">
             <EndProperty Name="Product">
               <ScalarProperty Name="ID" ColumnName="MainProductID" />
             </EndProperty>
@@ -817,7 +784,7 @@
               <ScalarProperty Name="ID" ColumnName="AttachedProductID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="TagOfClient" TypeName="Gubaidullin_AutoServiceModel.TagOfClient" StoreEntitySet="TagOfClient">
+          <AssociationSetMapping Name="TagOfClient" TypeName="Gubaidullin_AutoServiceModel2.TagOfClient" StoreEntitySet="TagOfClient">
             <EndProperty Name="Client">
               <ScalarProperty Name="Id" ColumnName="ClientID" />
             </EndProperty>

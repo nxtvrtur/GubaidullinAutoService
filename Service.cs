@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Windows.Media;
+
 namespace GubaidullinAutoService
 {
     using System;
@@ -24,14 +26,57 @@ namespace GubaidullinAutoService
         public int Id { get; set; }
         public string Title { get; set; }
         public string MainImagePath { get; set; }
-        public string DurationInSeconds { get; set; }
-        public decimal Cost { get; set; }
-        public Nullable<double> Discount { get; set; }
+        public int Duration { get; set; }
+        public short Cost { get; set; }
+        public Nullable<byte> Discount { get; set; }
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientService> ClientService { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServicePhoto> ServicePhoto { get; set; }
+
+        public string OldCost
+        {
+            get
+            {
+                if (Discount > 0)
+                {
+                    return Cost.ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public decimal NewCost
+        {
+            get
+            {
+                if (Discount > 0)
+                    return ((decimal)Cost - (decimal)Cost * (decimal)Discount / 100);
+                else
+                {
+                    return (decimal)Cost;
+                }
+            }
+        }
+
+        public SolidColorBrush BackgroundStyle
+        {
+            get
+            {
+                if (Discount > 0)
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
+                }
+                else
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
+                }
+            }
+        }
     }
 }

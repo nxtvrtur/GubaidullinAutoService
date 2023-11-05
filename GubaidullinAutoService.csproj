@@ -17,7 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <LangVersion>8</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -81,59 +81,59 @@
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Client.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientService.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="DocumentByService.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="Gender.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Gubaidullin_Model.Context.cs">
+    <Compile Include="Gubaidullin_AutoServiceEntities2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Gubaidullin_Model.Context.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Gubaidullin_Model.cs">
+    <Compile Include="Gubaidullin_AutoServiceEntities2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Gubaidullin_Model.Designer.cs">
+    <Compile Include="Gubaidullin_AutoServiceEntities2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Gubaidullin_Model.edmx</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.edmx</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="Manufacturer.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductPhoto.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductSale.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="Service.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="ServicePage.xaml.cs">
       <DependentUpon>ServicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServicePhoto.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+    <Compile Include="SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tag.cs">
-      <DependentUpon>Gubaidullin_Model.tt</DependentUpon>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
       <SubType>Designer</SubType>
@@ -152,6 +152,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,12 +178,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Gubaidullin_Model.edmx">
+    <EntityDeploy Include="Gubaidullin_AutoServiceEntities2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Gubaidullin_Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>Gubaidullin_AutoServiceEntities2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Gubaidullin_Model.edmx.diagram">
-      <DependentUpon>Gubaidullin_Model.edmx</DependentUpon>
+    <None Include="Gubaidullin_AutoServiceEntities2.edmx.diagram">
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -200,16 +204,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gubaidullin_Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Gubaidullin_Model.edmx</DependentUpon>
-      <LastGenOutput>Gubaidullin_Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Gubaidullin_Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Gubaidullin_Model.edmx</DependentUpon>
-      <LastGenOutput>Gubaidullin_Model.cs</LastGenOutput>
-    </Content>
     <Resource Include="Услуги автосервиса\diz.jpg" />
     <Resource Include="Услуги автосервиса\rulevoe-upravlenie-avtomobilya.jpg" />
     <Resource Include="Услуги автосервиса\transmission.jpg" />
@@ -229,7 +223,18 @@
     <Resource Include="Услуги автосервиса\Электрика.png" />
     <Resource Include="Resources\picture.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Gubaidullin_AutoServiceEntities2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.edmx</DependentUpon>
+      <LastGenOutput>Gubaidullin_AutoServiceEntities2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Gubaidullin_AutoServiceEntities2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Gubaidullin_AutoServiceEntities2.edmx</DependentUpon>
+      <LastGenOutput>Gubaidullin_AutoServiceEntities2.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

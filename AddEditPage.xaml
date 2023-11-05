@@ -34,7 +34,7 @@
         </TextBlock>
         <TextBox Text="{Binding Title}" Grid.Column="1" Grid.Row="0" Height="30"></TextBox>
         <TextBox Text="{Binding Cost}" Grid.Column="1" Grid.Row="1" Height="30" Width="200" HorizontalAlignment="Left"></TextBox>
-        <TextBox Text="{Binding DurationInSeconds}" Grid.Row="2" Grid.Column="1" Height="30" Width="200" HorizontalAlignment="Left"></TextBox>
+        <TextBox Text="{Binding Duration}" Grid.Row="2" Grid.Column="1" Height="30" Width="200" HorizontalAlignment="Left"></TextBox>
         <TextBox Text="{Binding Discount}" Grid.Row="3" Grid.Column="1" Height="30" Width="200" HorizontalAlignment="Left"></TextBox>
         <Button Name="SaveButton" Content="Сохранить" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="SaveButton_OnClick"></Button>
     </Grid>
